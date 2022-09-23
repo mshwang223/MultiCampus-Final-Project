@@ -1,17 +1,5 @@
 # MultiCampus-Final-Project
 
-### 팀명 :
-
-
-
-![](README.assets/팀마커.png)
-
-<center>
-    <h3>
-        불사조
-    </h3>
-</center>
-
 ##      2022-09-24 이후 개인 프로젝트로 전환
 
 
