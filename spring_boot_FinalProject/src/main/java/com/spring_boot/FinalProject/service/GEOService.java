@@ -28,7 +28,7 @@ public class GEOService {
 		    HttpURLConnection con = (HttpURLConnection)url.openConnection();
 		    con.setRequestMethod("GET");
 		    con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", clientId);
-		    con.setRequestProperty("X-NCP-APIGW-API-KEY", clientSecret); 
+		    con.setRequestProperty("X-NCP-APIGW-API-KEY", clientSecret);
 		            
 		    int responseCode = con.getResponseCode();
 		    BufferedReader br;
