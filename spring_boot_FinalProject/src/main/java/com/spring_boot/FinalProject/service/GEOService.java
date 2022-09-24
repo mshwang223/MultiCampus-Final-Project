@@ -67,7 +67,7 @@ public class GEOService {
 		String y = jsonObj.getJSONObject(0).getString("y");
 		
 		result = x + "," + y;
-		System.out.println(result);
+		//System.out.println(result);
 		return result;
 	}
 }

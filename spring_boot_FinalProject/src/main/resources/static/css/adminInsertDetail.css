@@ -3,6 +3,16 @@
 	width: 100%;
 }
 
+/* 사이드 언더라인 이동 */
+div.sideTitleLine {
+  top:calc(60px * 7); 
+}
+
+/* 숙박업체 등록에 메뉴 위치 */
+a.adminInsertHotel {
+  color: #ee82ee;
+}
+
 /* 등록 업체 정보 */
 .approve_area{
 	display: flex;
