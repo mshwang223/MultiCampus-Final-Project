@@ -25,7 +25,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.csrf().disable()
 			.formLogin().disable()
-			.headers().frameOptions().disable();
+			// .headers().frameOptions().disable()
+			.headers(headers -> headers.cacheControl(cache -> cache.disable()));
 	}
 	
 	@Override
