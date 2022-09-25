@@ -3,14 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<!-- 양식다시제출 제거 -->
-<%
-    response.setHeader("Cache-Control", "no-store");
-    response.setHeader("Pragma", "no-cache");
-    response.setDateHeader("Expires", 0);
-    if (request.getProtocol().equals("HTTP/1.1"))
-        response.setHeader("Cache-Control", "no-cache");
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +20,7 @@
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/common.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/petHotelDetail.css'/>">
+    
     <!-- js -->
     <script defer src="<c:url value='/js/clipboard.js'/>"></script>
     <script defer src="<c:url value='/js/petHotelDetail.js'/>"></script>
@@ -336,7 +330,11 @@
 		                <div class="total_charge">
 		                    <span>총합계</span> <span>0원</span>
 		                </div>
-		                <button class="book_btn">예약하기</button>
+		                <div class="btnLists">
+		                	<button class="cart_btn">장바구니</button>
+		                	<button class="book_btn">예약하기</button>
+		                </div>
+		                
 		
 		
 		            </div>
