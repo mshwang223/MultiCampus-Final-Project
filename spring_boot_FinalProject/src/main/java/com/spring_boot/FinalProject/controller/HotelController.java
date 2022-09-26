@@ -413,7 +413,27 @@ public class HotelController {
 
         return "subPage/petHotelDetail";
     }
-
+    
+    // 장바구니 페이지
+    @RequestMapping("/insertCartHotel")
+    public String insertCartHotel(@RequestParam HashMap<String, Object> map, HttpSession session) {
+        // 카트
+    	String userId = (String) session.getAttribute("sid");
+        int price = Integer.parseInt((String)map.get("total"));
+        String stayNo = (String)map.get("stayNo");
+        String period = (String) map.get("daterange");
+        
+        CartVO vo = new CartVO();
+        vo.setUserId(userId);
+        vo.setPeriod(period);
+        vo.setPrice(price);
+        vo.setStayNo(stayNo);
+        
+        orderService.insertCart(vo);    	
+    	
+    	return "subPage/cart";
+    }
+    
     // 호텔 예약 페이지
     @RequestMapping("/petHotelRsv")
     public String viewHotelRsv(@RequestParam HashMap<String, Object> map,
@@ -432,14 +452,6 @@ public class HotelController {
         System.out.println(count);
         map.put("period", period);
         map.put("count", count);
-
-
-        // 카트
-        String price = String.valueOf(map.get("total"));
-        String stayNo = String.valueOf(map.get("stayNo"));
-        CartVO cartVO = CartVO.ofStay(period, Integer.parseInt(price), Integer.parseInt(stayNo), userId);
-        System.out.println("cartVO = " + cartVO);
-        orderService.insertCart(cartVO);
 
         String[] email = user.getUserEmail().split("@");
 
@@ -477,9 +489,7 @@ public class HotelController {
         // 카트
         String price = String.valueOf(map.get("total"));
         String registId = String.valueOf(map.get("regId"));
-        CartVO cartVO = CartVO.ofReg(period, Integer.parseInt(price), Integer.parseInt(registId), userId);
-        System.out.println("cartVO = " + cartVO);
-        orderService.insertCart(cartVO);
+        //orderService.insertCart(cartVO);
 
 
         String[] email = user.getUserEmail().split("@");

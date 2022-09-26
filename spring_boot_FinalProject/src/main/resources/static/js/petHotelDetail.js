@@ -174,19 +174,30 @@ let maxPetCnt = $('#maxPetCnt'); 	// 최대 반려동물 수
 	
 	// reservation페이지로 이동
 	$('.book_btn').click(function(){
-		//var stay_no = $('.sticky_area').children('input[type=hidden]').val();
-		//window.location.href = "/petHotelRsv/stayNo=" + stay_no + "&period=" + $("#rangepicker").val();
-		if($('.stay_date').val() == ""){
+
+		if($('.stay_date').val() == "") {
 			alert("날짜를 입력해 주세요");
 			return false;
-		}else if($('.info_content_count').val() == ""){
+		} else if($('.info_content_count').val() == "") {
 			alert("인원수와 반려동물 수를 선택해주세요");
 			return false;		
-		}else{
+		} else
 			$("#rsvForm").submit();
-		}
 	});
 	
+	// 장바구니 페이지로 이동
+	$('.cart_btn').click(function(){
+		if($('.stay_date').val() == "" ){
+			alert("날짜를 입력해 주세요");
+			return false;
+		} else if($('.info_content_count').val() == "") {
+			alert("인원수와 반려동물 수를 선택해주세요");
+			return false;		
+		}else {
+			$("#rsvForm").attr('action', '/insertCartHotel');
+			$("#rsvForm").submit();
+		}	
+	});
 	
 	
 	// 현재 스크롤 위치
