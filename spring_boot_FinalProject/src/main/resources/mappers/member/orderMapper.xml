@@ -17,15 +17,8 @@
     <!-- 장바구니 저장 -->
     <insert id="insertCart" parameterType="com.spring_boot.FinalProject.model.CartVO">
         INSERT into cart
-        <if test='regId != 0'>
-            (userId, period, price, cartQty,regId)
-            VALUES (#{userId}, #{period}, #{price}, 1,#{regId})
-        </if>
-        <if test='stayNo != 0'>
-            (userId, period, price, cartQty,stayNo)
-            VALUES (#{userId}, #{period}, #{price}, 1,#{stayNo})
-        </if>
-
+        	   (userId, period, price, stayNo, cartQty)
+        VALUES (#{userId}, #{period}, #{price}, #{stayNo}, 1)
     </insert>
 
     <insert id="insertOrder" parameterType="java.util.List">
@@ -64,11 +57,10 @@
 
     <!-- 장바구니 등록 -->
     <select id="selectCartByUserId" parameterType="String" resultType="com.spring_boot.FinalProject.model.CartVO">
-        SELECT c.cartId, s.stayNo, ifnull(s.stayName, r.name) as stayName, c.price, c.period, r.regId
-        FROM cart c
-                 left join stay s on c.stayNo = s.stayNo
-                 left join registration r on r.regId = c.regId
-        where c.userId = #{userId}
+        SELECT c.cartId, s.stayNo, s.stayName, c.price, c.period
+          FROM cart c
+          JOIN stay s ON c.stayNo = s.stayNo
+         WHERE c.userId = #{userId}
     </select>
 
     <!-- 장바구니 삭제 -->

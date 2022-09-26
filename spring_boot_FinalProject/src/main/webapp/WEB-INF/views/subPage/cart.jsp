@@ -70,10 +70,9 @@
                 var list = new Array();
                 <c:forEach items="${cartList}" var="cartList" varStatus="status">
                 var reservation = {
-                    "price":${cartList.price},
-                    "stayNo":${cartList.stayNo},
-                    "regId":${cartList.regId},
-                    "period":"${cartList.period}"
+                    "price" : ${cartList.price},
+                    "stayNo" : ${cartList.stayNo},
+                    "period" : ${cartList.period}
                 };
                 list.push(reservation);
                 </c:forEach>

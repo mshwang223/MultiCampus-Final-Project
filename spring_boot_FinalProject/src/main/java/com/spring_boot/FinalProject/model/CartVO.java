@@ -10,7 +10,6 @@ public class CartVO {
     private String period;
     private int price;
     private String stayNo;
-    private int regId;
 
     public String getUserId() {
 		return userId;
@@ -52,12 +51,5 @@ public class CartVO {
 	}
 	public void setStayNo(String stayNo) {
 		this.stayNo = stayNo;
-	}
-
-	public int getRegId() {
-		return regId;
-	}
-	public void setRegId(int regId) {
-		this.regId = regId;
 	}
 }

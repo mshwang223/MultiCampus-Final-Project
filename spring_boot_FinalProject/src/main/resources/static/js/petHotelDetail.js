@@ -193,9 +193,31 @@ let maxPetCnt = $('#maxPetCnt'); 	// 최대 반려동물 수
 		} else if($('.info_content_count').val() == "") {
 			alert("인원수와 반려동물 수를 선택해주세요");
 			return false;		
-		}else {
-			$("#rsvForm").attr('action', '/insertCartHotel');
-			$("#rsvForm").submit();
+		} else {
+			var formData = new FormData($('#rsvForm')[0]);
+			
+			$.ajax({
+	 			type:"post",
+	 			enctype: 'multipart/form-data',
+	 			url:"/insertCartHotel",
+	 			data: formData,
+				contentType : false,
+	        	processData : false,
+				success:function(result){
+					// 성공 시 결과 받음
+					if(result == "ACCESS_DENIED") {
+						alert("로그인을 해주세요.");
+						return false;
+					} else if(result == "SUCCESS") {
+						alert("장바구니에 추가되었습니다.");
+						window.location.href = "/cart";
+					}
+				},
+				error:function(){
+					// 오류있을 경우 수행 되는 함수
+					alert("전송 실패");
+				}
+	 		});
 		}	
 	});
 	

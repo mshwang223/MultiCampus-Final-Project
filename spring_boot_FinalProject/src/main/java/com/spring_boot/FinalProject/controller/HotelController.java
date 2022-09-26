@@ -414,11 +414,15 @@ public class HotelController {
         return "subPage/petHotelDetail";
     }
     
-    // 장바구니 페이지
+    // 장바구니 추가
+    @ResponseBody
     @RequestMapping("/insertCartHotel")
-    public String insertCartHotel(@RequestParam HashMap<String, Object> map, HttpSession session) {
-        // 카트
+    public String insertCartHotel(@RequestParam HashMap<String, Object> map, 
+    							  HttpSession session) {
+        // 카트에 담기
     	String userId = (String) session.getAttribute("sid");
+    	if (userId == null) return "ACCESS_DENIED";
+    	
         int price = Integer.parseInt((String)map.get("total"));
         String stayNo = (String)map.get("stayNo");
         String period = (String) map.get("daterange");
@@ -429,9 +433,9 @@ public class HotelController {
         vo.setPrice(price);
         vo.setStayNo(stayNo);
         
-        orderService.insertCart(vo);    	
+        orderService.insertCart(vo);
     	
-    	return "subPage/cart";
+    	return "SUCCESS";
     }
     
     // 호텔 예약 페이지
