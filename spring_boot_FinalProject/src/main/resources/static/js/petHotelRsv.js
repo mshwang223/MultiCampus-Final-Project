@@ -23,8 +23,7 @@ $(document).ready(function(){
 		// 이름칸 비었을 때
 		if($('#cusName').val() == ""){
 			alert('투숙객명을 입력해주세요.');
-			$('#cusName').focus();
-      		$('#cusName').focus(function(){
+			$('#cusName').focus(function() {
         		$(this).css('border-color','#ff4d4d');
         		if($('#cusName').val() != ''){
         			$(this).css('border-color', '#0a0a0a');
@@ -33,30 +32,23 @@ $(document).ready(function(){
 		
 			result = false;
 		// 연락처 칸 비었을때
-		}else if($('#phNum').val() == ""){
+		}else if($('#phNum').val() == "") {
 			alert('휴대폰 번호를 확인해주세요');
 			$('#phNum').focus();
-			$('#phNum').focus(function(){
-				$(this).css('border-color', '#ff4d4d');
-				if($('#phNum').val()!=''){
-					$(this).css('border-color', '#0a0a0a');
-				}
-			});
+			$('#phNum').css('border-color', '#ff4d4d');
+			if($('#phNum').val()!='') $('#phNum').css('border-color', '#0a0a0a');
+			
 			result = false;
-		}else if($('#mailId').val() == ""){
+		} else if($('#mailId').val() == "") {
 			alert('이메일을 확인해주세요');
 			$('#mailId').focus();
-			$('#mailId').focus(function(){
-				$(this).css('border-color', '#ff4d4d');
-				if($('#mailId').val()!=''){
-					$(this).css('border-color', '#0a0a0a');
-				}
-			});
+			$('#mailId').css('border-color', '#ff4d4d');
+			if($('#mailId').val()!='') $('#mailId').css('border-color', '#0a0a0a');
+			
 			result = false;
-		}else if(!($('input[name=finalCheck]').is(':checked'))){
+		} else if(!($('input[name=finalCheck]').is(':checked'))) {
 			alert('약관에 동의하여 주시기 바랍니다');
-		}else{
-			alert('성공적으로 예약이 완료되었습니다. 장바구니에서 확인해주세요');
+			result = false;
 		}
 		
 		return result;
@@ -85,8 +77,8 @@ $(document).ready(function(){
         	processData : false,
 			success:function(result){
 				// 성공 시 결과 받음
-				if(result == "SUCCESS"){
-					//location.href="/cart";
+				if(result == "SUCCESS") {
+					$("#final_pay_modal").css('display', 'block');
 				}
 			},
 			error:function(){
@@ -98,29 +90,60 @@ $(document).ready(function(){
 	
 	
 	// select박스 이메일주소 값 text박스로 가져오기
-    // 이메일 주소를 선택했을 때 직접 입력 칸 초기화, 비활성화
- 	$('#cusSel').change(function () {
-    	$('#cusSel option:selected').each(function(){
-        	if($(this).val() == "") { //직접입력일 경우
-           		$("#mailAddress").val("");
-            	$("#mailAddress").attr("disabled", false);
-       		}else{ //직접입력이 아닐경우
-            	$("#mailAddress").val($(this).text());
-            	$("#mailAddress").attr("disabled", true);
-        }
-    });
-  });
-  $('#cusSel2').change(function () {
-    	$('#cusSel2 option:selected').each(function(){
-        	if($(this).val() == "") { //직접입력일 경우
-           		$("#emailAddress").val("");
-            	$("#emailAddress").attr("disabled", false);
-       		}else{ //직접입력이 아닐경우
-            	$("#emailAddress").val($(this).text());
-            	$("#emailAddress").attr("disabled", true);
-        }
-    });
-  });
+	// 이메일 주소를 선택했을 때 직접 입력 칸 초기화, 비활성화
+	$('#cusSel').change(function () {
+	   	$('#cusSel option:selected').each(function(){
+	       	if($(this).val() == "") { //직접입력일 경우
+	       		$("#mailAddress").val("");
+	           	$("#mailAddress").attr("disabled", false);
+	   		} else { //직접입력이 아닐경우
+	            $("#mailAddress").val($(this).text());
+	            $("#mailAddress").attr("disabled", true);
+	        }
+	    });
+  	});
+  
+	$('#cusSel2').change(function () {
+		$('#cusSel2 option:selected').each(function(){
+	    	if($(this).val() == "") { //직접입력일 경우
+	        	$("#emailAddress").val("");
+	            $("#emailAddress").attr("disabled", false);
+	       	} else { //직접입력이 아닐경우
+	            $("#emailAddress").val($(this).text());
+	            $("#emailAddress").attr("disabled", true);
+	        }
+	    });
+	  });
+	
+	// 결제 모달  
+	// x버튼 클릭시 모달 닫기
+	span.onclick = function () {
+	    modal.style.display = "none";
+	}
+	
+	// 다른 부분 클릭 시 모달 닫기
+	window.onclick = function (event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	}
+	
+	// 체크박스
+	function selectAll2(selectAll) {
+	    const checkboxes
+	        = document.getElementsByName("agree1");
+	
+	    checkboxes.forEach((checkbox) => {
+	        checkbox.checked = selectAll.checked;
+	    })
+	}
+	
+	$(document).ready(function(){
+		// 가격보상제도 클릭시
+		$('#insurancePrice').click(function(){
+			$('.info_insurance').slideToggle('500');
+		});
+	});
 	
 
 });// ready 끝
