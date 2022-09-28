@@ -235,10 +235,6 @@ public class HotelController {
         ArrayList<InsertHotelVO> approveList = hotelService.listtInsert();
         model.addAttribute("approveList", approveList);
         
-        // 찜하트 유지(특가)
-        // ArrayList<LikeVO> likeRegList = userService.retainHeartReg(userId);
-        // model.addAttribute("likeRegList", likeRegList);
-        
         // 찜하트 유지(일반)
         ArrayList<LikeVO> likeStayList = userService.retainHeartStay(userId);
         model.addAttribute("likeStayList", likeStayList);
