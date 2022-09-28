@@ -166,6 +166,7 @@ public class AdminController {
 	public String adminDeleteNotice(@RequestParam("boardIds") String boardIds,
 									HashMap<String, Object> map) {
 		
+		// 정규식으로 숫자를 제외한 특수문자를 제거
 		String[] arrBoardId = boardIds.replaceAll("[^0-9,]", "").split(",");
 		
 		map.put("boardIds", arrBoardId);
