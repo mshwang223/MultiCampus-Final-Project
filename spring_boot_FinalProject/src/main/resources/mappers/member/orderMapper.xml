@@ -75,11 +75,11 @@
 
     <!-- 이용내역-->
     <select id="selectReservation" parameterType="String" resultType="com.spring_boot.FinalProject.model.OrderInfoVO">
-        SELECT o.*, ifnull(s.stayName, r.name) as name
-        FROM orderinfo o
-                 left join stay s on o.stayNo = s.stayNo
-                 left join registration r on r.regId = o.regId
-        where o.userId = #{userId} and o.endDate >= date_format(NOW(),'%Y-%m-%d')
+        SELECT o.*, s.stayName as name
+          FROM orderinfo o
+          JOIN stay s on o.stayNo = s.stayNo
+         WHERE o.userId = #{userId} 
+           AND o.endDate >= date_format(NOW(),'%Y-%m-%d')
     </select>
 
 
